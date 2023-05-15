@@ -27,18 +27,24 @@ def verify_addresses(addresses: List[Address]) -> List[Tuple[Address, Address]]:
         "license": settings.smarty_api_license,
     }
 
-    # Convert addresses to smarty api address input to validate against api limits
-    # We also set match to invalid to simplify matching requests to results
-    body = [
-        USAddressInput(street=address.street, city=address.city, zipcode=address.zipcode, match="invalid").dict()
-        for address in addresses
-    ]
+    # Split addresses into chunks of 100
+    address_chunks = [addresses[i:i+100] for i in range(0, len(addresses), 100)]
 
-    # verify addresses with smarty api
-    res = requests.post(f"{settings.smarty_api_base_route}/street-address", json=body, params=params)
+    # Verify each chunk of addresses with smarty api
+    verified_addresses = []
+    for chunk in address_chunks:
+        # Convert addresses to smarty api address input to validate against api limits
+        # We also set match to invalid to simplify matching requests to results
+        body = [
+            USAddressInput(street=address.street, city=address.city, zipcode=address.zipcode, match="invalid").dict()
+            for address in chunk
+        ]
 
-    # convert smarty response to internal address model
-    verified_addresses = [smarty_address_to_address(address) for address in res.json()]
+        # verify addresses with smarty api
+        res = requests.post(f"{settings.smarty_api_base_route}/street-address", json=body, params=params)
+
+        # convert smarty response to internal address model
+        verified_addresses += [smarty_address_to_address(address) for address in res.json()]
 
     # Map the requested addresses to the matching verified addresses
     return list(partition(2, interleave([addresses, verified_addresses])))

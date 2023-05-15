@@ -33,8 +33,6 @@ class Settings(BaseSettings):
         # Allow loading environment variables from a file
         env_file = ".env"
         env_file_encoding = "utf-8"
-        # Allow hiding variables from json output and logs
-        underscore_attrs_are_private = True
 
 
 # Singleton instance of the settings class so we don't reparse variables

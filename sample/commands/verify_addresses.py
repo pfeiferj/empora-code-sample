@@ -1,12 +1,10 @@
 import click
 import sys
 from os import isatty
-from io import StringIO
-from typing import List, TextIO
-from sample.models.address import Address
+from typing import TextIO
 from sample.actions.verify_addresses import verify_addresses as verify_addresses_action
+from sample.actions.parse_addresses_csv import parse_addresses_csv
 
-import csv
 
 
 NO_FILE_PROVIDED = (
@@ -41,32 +39,3 @@ def verify_addresses(file: TextIO):
     # print formatted addresses
     for i in range(len(verified_addresses)):
         print(f"{verified_addresses[i][0].format()} -> {verified_addresses[i][1].format()}")
-
-
-def parse_addresses_csv(csv_file: TextIO) -> List[Address]:
-    """
-    Takes a csv file and parses it into a list of addresses
-    """
-
-    # create a csv reader from the file data
-    data_io = StringIO(str(csv_file.read()))
-    reader = csv.reader(data_io)
-
-    # read from the csv reader into an addresses list
-    addresses: List[Address] = []
-    line_no = 0
-    for row in reader:
-        line_no += 1
-        if len(row) != 3:
-            raise Exception(f"Invalid address row on line number: {line_no}.")
-        addresses.append(Address(street=row[0], city=row[1], zipcode=row[2]))
-
-    # strip header if present
-    if len(addresses) != 0 and addresses[0].is_header():
-        addresses = addresses[1:]
-
-    # verify we have addresses
-    if len(addresses) == 0:
-        raise Exception("No addresses found in file.")
-
-    return addresses

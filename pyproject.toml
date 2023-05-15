@@ -4,7 +4,7 @@ version = "0.1.0"
 description = "A code sample for Empora."
 authors = ["Anon Y Mouse <anon@example.com>"]
 readme = "README.md"
-packages = [{include = "empora_code_sample"}]
+packages = [{include = "sample"}]
 
 [tool.poetry.dependencies]
 python = "^3.10"
@@ -15,11 +15,11 @@ requests = "^2.30.0"
 toolz = "^0.12.0"
 
 [tool.poetry.group.dev.dependencies]
-pytest = "^7.3.1"
 black = "^23.3.0"
 flake8 = "^6.0.0"
 flake8-pyproject = "^1.2.3"
 poetry = "^1.4.2"
+requests-mock = "^1.10.0"
 
 [build-system]
 requires = ["poetry-core"]
@@ -35,3 +35,7 @@ max-line-length = 120
 exclude = [".git", "__pycache__", "build", "dist"]
 max-complexity = 10
 count=true
+
+[tool.poetry.scripts]
+sample = 'sample.sample:main'
+tests = 'tests.tests:run_all'
