@@ -1,5 +1,6 @@
 [
   {
+    "input_id": "0",
     "input_index": 0,
     "candidate_index": 0,
     "delivery_line_1": "143 E Main St",
@@ -47,6 +48,7 @@
     }
   },
   {
+    "input_id": "1",
     "input_index": 1,
     "candidate_index": 0,
     "delivery_line_1": "1 Empora St",
