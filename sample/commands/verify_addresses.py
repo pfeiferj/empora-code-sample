@@ -6,7 +6,6 @@ from sample.actions.verify_addresses import verify_addresses as verify_addresses
 from sample.actions.parse_addresses_csv import parse_addresses_csv
 
 
-
 NO_FILE_PROVIDED = (
     "No file provided.\nPlease pass the file name as the first argument or pipe the file data to this command.\n"
 )

@@ -1,6 +1,7 @@
 from unittest import TestCase, main
 from sample.models.address import Address
 
+
 class TestAddress(TestCase):
     def test_address_strips_leading_trailing_spaces(self):
         addr = Address(street="  123 Main St  ", city="Columbus  ", zipcode="  43215")
@@ -25,5 +26,5 @@ class TestAddress(TestCase):
         self.assertFalse(addr.is_header())
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

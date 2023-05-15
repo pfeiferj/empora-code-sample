@@ -12,6 +12,7 @@ def basic_address_list() -> List[Address]:
         Address(street="1 Empora St", city="Title", zipcode="11111"),
     ]
 
+
 def basic_address_csv() -> TextIO:
     with open(f"{dir_path}/addresses.csv", "r") as f:
         return StringIO(f.read())

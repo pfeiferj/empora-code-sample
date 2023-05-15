@@ -3,6 +3,7 @@ import csv
 from typing import List, TextIO
 from sample.models.address import Address
 
+
 def parse_addresses_csv(csv_file: TextIO) -> List[Address]:
     """
     Takes a csv file and parses it into a list of addresses

@@ -3,6 +3,7 @@ from unittest import TestCase, main
 from sample.models.address import Address
 from sample.actions.parse_addresses_csv import parse_addresses_csv
 
+
 class TestParseAddressesCsv(TestCase):
     def test_parse_addresses_csv(self):
         csv = "143 E Main St,Columbus,43215\n1 Empora St,Title,11111"
@@ -36,5 +37,6 @@ class TestParseAddressesCsv(TestCase):
         ]
         self.assertEqual(parse_addresses_csv(StringIO(csv)), expected)
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     main()

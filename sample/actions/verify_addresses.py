@@ -10,7 +10,6 @@ interleave = itertoolz.interleave
 partition = itertoolz.partition
 
 MAX_ENTRIES_PER_REQUEST = 100
-MAX_PAYLOAD_SIZE = 32 * 1024  # 32KB
 
 
 def verify_addresses(addresses: List[Address]) -> List[Tuple[Address, Address]]:
@@ -27,8 +26,8 @@ def verify_addresses(addresses: List[Address]) -> List[Tuple[Address, Address]]:
         "license": settings.smarty_api_license,
     }
 
-    # Split addresses into chunks of 100
-    address_chunks = [addresses[i:i+100] for i in range(0, len(addresses), 100)]
+    # Split addresses into chunks of MAX_ENTRIES_PER_REQUEST
+    address_chunks = [addresses[i : i + MAX_ENTRIES_PER_REQUEST] for i in range(0, len(addresses), 100)]
 
     # Verify each chunk of addresses with smarty api
     verified_addresses = []
