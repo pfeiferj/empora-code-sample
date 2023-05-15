@@ -22,6 +22,8 @@ poetry install
 # Configuration
 This project accesses the smarty street address verification api. To configure
 credentials to the api you can use the following environment variables:
+
+
 **Required:**
 * SMARTY\_API\_KEY: The smarty api secret key/token.
 * SMARTY\_API\_ID: The smarty api id.
