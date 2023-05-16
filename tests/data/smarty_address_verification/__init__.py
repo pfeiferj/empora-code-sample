@@ -1,6 +1,10 @@
 import json
 import os
-from sample.models.settings import settings
+from unittest.mock import patch
+
+patch.dict(os.environ, {"SMARTY_API_KEY": "test", "SMARTY_API_ID": "test"}).start()
+
+from sample.models.settings import settings  # noqa: E402 Purposefully imported after patching environment variables
 
 dir_path = os.path.dirname(os.path.realpath(__file__))
 
