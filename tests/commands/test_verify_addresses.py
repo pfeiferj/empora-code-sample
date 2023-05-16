@@ -5,6 +5,7 @@ from toolz.itertoolz import interleave, partition
 from tests.data.addresses import basic_address_list, basic_address_csv
 import os
 
+
 def mock_decorator(*args, **kwargs):
     """Decorate by doing nothing."""
 

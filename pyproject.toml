@@ -34,7 +34,6 @@ include = '\.pyi?$'
 max-line-length = 120
 exclude = [".git", "__pycache__", "build", "dist"]
 ignore = ["E203", "W503"]
-max-complexity = 10
 count=true
 
 [tool.poetry.scripts]

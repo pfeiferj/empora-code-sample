@@ -24,13 +24,13 @@ class TestVerifyAddresses(TestCase):
     @Mocker()
     def test_verify_addresses_200(self, requests_mock: Mocker):
         response_mock_data = []
-        for i in range(0,200):
+        for i in range(0, 200):
             response_mock_data += successful_response_data_1()
             response_mock_data[-1]["input_id"] = str(i)
 
         requests_mock.post(f"{settings.smarty_api_base_route}/street-address", json=response_mock_data)
 
-        addresses = [Address(street="143 e Maine Street", city="Columbus", zipcode="43215")]*200
+        addresses = [Address(street="143 e Maine Street", city="Columbus", zipcode="43215")] * 200
         verified_addresses = verify_addresses(addresses)
         expected_verified_addresses = [
             Address(street="143 E Main St", city="Columbus", zipcode="43215-5370", valid=True),
@@ -43,15 +43,15 @@ class TestVerifyAddresses(TestCase):
     def test_verify_addresses_invalid(self, requests_mock: Mocker):
         # Test that order is maintained with an invalid address
         response_mock_data = []
-        for i in range(0,40):
+        for i in range(0, 40):
             response_mock_data += successful_response_data_1()
             response_mock_data[-1]["input_id"] = str(i)
         del response_mock_data[23]
 
         requests_mock.post(f"{settings.smarty_api_base_route}/street-address", json=response_mock_data)
 
-        addresses = [Address(street="143 e Maine Street", city="Columbus", zipcode="43215")]*40
-        addresses[23] = Address(street="a"*70, city="Title", zipcode="11111")
+        addresses = [Address(street="143 e Maine Street", city="Columbus", zipcode="43215")] * 40
+        addresses[23] = Address(street="a" * 70, city="Title", zipcode="11111")
 
         verified_addresses = verify_addresses(addresses)
 

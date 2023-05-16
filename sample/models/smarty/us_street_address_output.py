@@ -1,6 +1,7 @@
 from pydantic import BaseModel
 from sample.models.address import Address
 
+
 class USAddressComponents(BaseModel):
     """
     The individual parts of an address as returned by smarty.
