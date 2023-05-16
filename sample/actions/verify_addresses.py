@@ -24,14 +24,13 @@ def verify_addresses(addresses: List[Address]) -> List[Tuple[Address, Address]]:
     }
 
     # Initialize list of verified addresses with invalid addresses
-    verified_addresses = [Address(street="",city="",zipcode="",valid=False)] * len(addresses)
+    verified_addresses = [Address(street="", city="", zipcode="", valid=False)] * len(addresses)
 
     # Convert addresses to smarty api address input to validate against api
     # limits. We set match to invalid and the input_id to make it easier to
     # match addresses later
     input_addresses = [
-        USAddressInput.from_address(addresses[i], match="invalid", input_id=str(i))
-        for i in range(0,len(addresses))
+        USAddressInput.from_address(addresses[i], match="invalid", input_id=str(i)) for i in range(0, len(addresses))
     ]
 
     # Filter out invalid addresses

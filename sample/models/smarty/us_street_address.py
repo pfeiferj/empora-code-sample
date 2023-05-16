@@ -1,5 +1,5 @@
 from typing import Optional
-from pydantic import (BaseModel)
+from pydantic import BaseModel
 from sample.models.address import Address
 
 
@@ -21,14 +21,13 @@ class USAddressInput(BaseModel):
     candidates: Optional[int] = None
     match: Optional[str] = None
 
-
     def is_valid(self) -> bool:
         """
         Validate whether fields meet smarty api requirements.
         """
         if self.input_id is not None and len(self.input_id) > 36:
             return False
-        
+
         if len(self.street) > 50:
             return False
 
@@ -61,7 +60,6 @@ class USAddressInput(BaseModel):
 
         return True
 
-
     @staticmethod
     def from_address(address: Address, **kwargs):
         """
@@ -75,7 +73,7 @@ class USAddressInput(BaseModel):
             street2 = split_street[1]
         if len(split_street) > 2:
             raise Exception("Street can only have up to two lines.")
-        
+
         return USAddressInput(**kwargs, street=street, street2=street2, city=address.city, zipcode=address.zipcode)
 
 
