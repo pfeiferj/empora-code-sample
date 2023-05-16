@@ -1,6 +1,6 @@
 from unittest import TestCase, main
 from sample.models.address import Address
-from sample.models.smarty.us_street_address import USAddressOutput
+from sample.models.smarty.us_street_address_output import USAddressOutput
 
 
 class TestUSAddressOutput(TestCase):

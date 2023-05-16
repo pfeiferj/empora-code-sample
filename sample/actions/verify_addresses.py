@@ -2,7 +2,8 @@ import requests
 from toolz.itertoolz import interleave, partition
 from typing import List, Tuple
 from sample.models.address import Address
-from sample.models.smarty.us_street_address import USAddressInput, USAddressOutput
+from sample.models.smarty.us_street_address_input import USAddressInput
+from sample.models.smarty.us_street_address_output import USAddressOutput
 from sample.models.settings import settings
 
 
